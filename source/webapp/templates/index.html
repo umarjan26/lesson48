@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Goods page{% endblock %}
+{% block content %}
+    <h1>магазин</h1></br>
+    {% for good in goods %}
+        {% if good.remainder > 0 %}
+            </br><h2>{{ good.description }}</h2>
+            <h3>{{ good.price }}</h3>
+            <h3>{{ good.category }}</h3>
+            <p>
+                <a href='{% url "good_view" good.pk %}'>посмотреть товар</a>
+
+
+            </p>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
