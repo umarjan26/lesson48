@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <h2>Do you really want to delete {{ good.description }}?</h2>
+        <input type="submit" value="Yes">
+    </form></br>
+    <form method="GET" action="{% url 'main' %}" target="_blank">
+        <button>No</button>
+    </form>
+{% endblock %}

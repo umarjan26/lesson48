@@ -9,9 +9,10 @@
             <h3>{{ good.category }}</h3>
             <p>
                 <a href='{% url "good_view" good.pk %}'>посмотреть товар</a>
-
-
+                <a href='{% url "good_update" good.pk %}'>добавить товар</a>
+                <a href='{% url "good_delete" good.pk %}'>удалить товар</a>
             </p>
         {% endif %}
     {% endfor %}
+
 {% endblock %}

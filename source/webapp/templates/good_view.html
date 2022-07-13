@@ -5,10 +5,10 @@
         <a class="nav-link" href="{% url 'good_add' %}">добавить</a>
     </li>
     <li class="nav-item">
-
+        <a class="nav-link" href="{% url 'good_update' good.pk %}">редактировать</a><br/>
     </li>
     <li class="nav-item">
-
+        <a class="nav-link" href="{% url 'good_delete' good.pk %}">удалить</a>
     </li>
 {% endblock %}
 {% block content %}

@@ -36,3 +36,33 @@ def good_view_(request, pk):
 
 
 
+def good_update_view(request, pk):
+    good = get_object_or_404(Good, pk=pk)
+    if request.method == 'GET':
+        form = GoodForm(initial={
+                        'description': good.description,
+                        'detailed_description': good.detailed_description,
+                        'category': good.category,
+                        'price': good.price,
+                        'remainder': good.remainder})
+        return render(request, 'good_edit.html', {"good":good, "form":form})
+    else:
+        form = GoodForm(data=request.POST)
+        if form.is_valid():
+            good.description = request.POST.get('description')
+            good.category = request.POST.get('category')
+            good.remainder = request.POST.get('remainder')
+            good.price = request.POST.get('price')
+            good.detailed_description = request.POST.get('detailed_description')
+            good.save()
+            return redirect("good_view", pk=good.pk)
+        return render(request, 'good_edit.html', {"good": good, "form": form})
+
+
+def good_delete_view(request, pk):
+    good = get_object_or_404(Good, pk=pk)
+    if request.method == 'GET':
+        return render(request, "good_delete.html", {"good":good})
+    else:
+        good.delete()
+        return redirect("main")
